@@ -1,0 +1,70 @@
+buildscript {
+
+    repositories {
+        add(Repos.google(this.repositories))
+        add(Repos.jcenter(this.repositories))
+    }
+    dependencies {
+        classpath GradlePlugins.android
+        classpath GradlePlugins.kotlin
+    }
+}
+
+subprojects {
+    afterEvaluate {
+        if (it.hasProperty('android') && !it.name.equals('sdkswapper')) {
+            android {
+                compileSdkVersion 28
+                buildToolsVersion "28.0.3"
+
+                defaultConfig {
+                    minSdkVersion 21
+                    targetSdkVersion 26
+                    vectorDrawables.useSupportLibrary = true
+                    externalNativeBuild {
+                        ndk {
+                            abiFilters 'armeabi-v7a', 'x86'
+                        }
+                    }
+                }
+                compileOptions {
+                    sourceCompatibility JavaVersion.VERSION_1_8
+                    targetCompatibility JavaVersion.VERSION_1_8
+                }
+                testOptions {
+                    unitTests {
+                        includeAndroidResources = true
+                        all {
+                            maxHeapSize = "4g"
+                            jvmArgs "-Xmx4g"
+                            failFast = true
+                            testLogging {
+                                events "passed", "skipped", "failed", "standardOut", "standardError"
+                                outputs.upToDateWhen { false }
+                                showCauses true
+                                showExceptions true
+                                showStandardStreams = true
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+allprojects { proj ->
+    repositories {
+        add(Repos.google(this.repositories))
+        add(Repos.jcenter(this.repositories))
+    }
+}
+
+task clean {
+    doLast {
+        delete 'build/'
+    }
+}
+
+

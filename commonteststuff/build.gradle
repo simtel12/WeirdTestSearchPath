@@ -1,0 +1,14 @@
+apply plugin: 'com.android.library'
+
+dependencies {
+    implementation project(":common")
+    implementation project(":httpcore")
+
+    implementation Deps.junit_core
+
+    // FIXME: This line is what breaks the test search
+    implementation Deps.junit5_api
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"

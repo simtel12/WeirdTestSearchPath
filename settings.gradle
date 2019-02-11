@@ -1,0 +1,6 @@
+include ':common'
+project(':common').projectDir = file('common/lib')
+include(':commonteststuff')
+include ':httpcore'
+include ':data'
+
