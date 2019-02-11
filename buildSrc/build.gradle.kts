@@ -3,7 +3,7 @@
 // This area is for versions that must be shared by both the buildSrc (for gradle plugins) as well
 // as actual implementation in the projects.
 
-val gradleVersion = "3.3.1"
+val gradleVersion = "3.1.4"
 val kotlinVersion = "1.3.21"
 
 //endregion
