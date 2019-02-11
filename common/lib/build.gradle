@@ -1,6 +1,5 @@
 
 apply plugin: 'com.android.library'
-//apply plugin: 'kotlin-android'
 
 android {
     defaultConfig {
@@ -12,10 +11,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-}
-
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
-    kotlinOptions.allWarningsAsErrors = true
 }
 
 dependencies {
